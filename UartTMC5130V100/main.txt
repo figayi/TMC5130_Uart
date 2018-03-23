@@ -1,0 +1,20 @@
+while(1)内添加
+{
+	LTC294x_Uart.com_process();			//uart usr
+}
+
+uart receive interrupt 内添加(根据目标MCU修改)
+/***/
+{
+	unsigned char temp;
+
+	while(Serial.available())
+	  {   
+	  
+		  temp=(unsigned char)Serial.read();
+		  LTC294x_Uart.Rx_buffer[LTC294x_Uart.Rx_write_pt++]=temp;
+		  if(LTC294x_Uart.Rx_write_pt==uart_buffer_len) 	  //uart_buffer_len 100
+				  LTC294x_Uart.Rx_write_pt=0;
+	  }
+}
+/***/

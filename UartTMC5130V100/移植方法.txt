@@ -1,0 +1,26 @@
+1: 将文件中C++格式转为C格式,
+	A: 文件后缀.cpp改为.c
+	B: 去除头文件中
+	class xxxx{
+
+	public:
+	private
+	及源文件中"xxxx::"
+	C: 头文件中声明加extern 
+2: 串口接收缓冲用了200个字节即20帧数据以防数据接收溢出
+3: 串口接收中断为单子节接收并压入接收缓冲区
+4: 串口接收数据写入和读取均为指针移位方式,且2个指针互不干涉
+	Rx_Read_pt,Rx_write_pt
+   当读指针(Rx_Read_pt)==写指针(Rx_write_pt)时视为缓冲读取完毕
+5: 串口协议格式见usart sum check (TMC5130).xls
+	其中当Device=0x07时为设备选择 
+		data[3]==00->TMC5130(0),
+		data[3]==00->TMC5130(1),
+	当Device=0x02时为TMC5130spi命令
+6: 主程序及中断中要添加的见main.txt内说明
+
+	
+	
+	
+	
+	
